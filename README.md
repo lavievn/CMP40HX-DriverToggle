@@ -47,7 +47,7 @@ Lệnh `-ScanFolder` chỉ quét INF. File trong `simulation-fixtures/` là dữ
 
 ## Bảo mật, riêng tư và giới hạn
 
-- Mã PowerShell, VBS, CMD được công bố để kiểm tra; không kèm driver NVIDIA, chương trình EXE, tài khoản cá nhân, QR hay ảnh từ bộ gốc.
+- Mã PowerShell, VBS, CMD được công bố để kiểm tra; không kèm driver NVIDIA, chương trình EXE.
 - Ứng dụng có thể yêu cầu nâng quyền, chạy PowerShell ẩn qua VBS và dùng Windows SetupAPI để chuyển driver. Những hành vi này có thể bị hệ thống bảo mật cảnh báo; cảnh báo không tự chứng minh có mã độc, việc quét không đảm bảo phần mềm tuyệt đối an toàn.
 - Không đưa lên GitHub các file `cmp40hx-profiles*.json`, `cmp40hx-*.log`, `*.invalid-*`, driver mod và gói cài riêng vì có thể chứa đường dẫn máy, log hoặc file không được phép phân phối.
 - **Chưa kiểm thử trực tiếp bản công khai đã lược bỏ thành phần đồ họa trên Windows/CMP 40HX.** Phải thử mô phỏng và xác nhận giao diện trước khi chuyển driver thật.
