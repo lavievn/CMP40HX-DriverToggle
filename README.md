@@ -1,3 +1,4 @@
+Dựa theo bản gốc chạy trên 30HX của Lâm Đặng - https://www.facebook.com/lamdang99/
 # CMP 40HX Driver Toggle
 
 Công cụ Windows (PowerShell/WinForms) chuyển đổi giữa **hai gói driver NVIDIA CMP 40HX** đã được người dùng tự chuẩn bị. Chỉ hỗ trợ thiết bị có Hardware ID `PCI\VEN_10DE&DEV_1F0B`.
