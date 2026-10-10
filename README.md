@@ -15,9 +15,9 @@ cho hai THƯ MỤC ở trên > kiểm tra INF và DriverVer hiện ra > 'Lưu'.
 CÁCH KIỂM TRA QUÉT INF - CHỈ ĐỌC, KHÔNG CẦN ADMIN / KHÔNG CÀI DRIVER
 Mở PowerShell trong thư mục công cụ và dùng:
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder 'C:\Users\hason\Desktop\(FIX LOL) 40HX_NVIDIA_Setup'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder '...\đường dẫn đến folder (FIX LOL) 40HX_NVIDIA_Setup'
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder 'C:\Users\hason\Desktop\617.14-desktop-win10-win11-64bit-international-dch-whql'
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder '...\đường dẫn đến folder 617.14-desktop-win10-win11-64bit-international-dch-whql'
 
 KẾT QUẢ ĐÚNG: 'OK: ...nvaei.inf' cho 460 mod,
 'OK: ...nvaci.inf' cho 617.14. Phiên bản DriverVer sẽ
