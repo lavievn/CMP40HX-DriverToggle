@@ -1,36 +1,57 @@
-# CMP40HX-DriverToggle
-chuyển đổi trực tiếp giữa 2 driver cho 40hx
-THIẾT LẬP CHO HAI DRIVER CỦA BẠN
-- GPU công suất tối đa: tải driver bạn muốn sử dụng để làm việc, chạy AI (raincandy, dartraiden..), giải nén bằng win rar ra một thư mục tuỳ chọn, 
-  INF dự kiến: Display.Driver\nvaci.inf
+# CMP 40HX Driver Toggle
 
-- GPU LOL / Valorant (driver 460 mod):
-  tải driver bạn muốn sử dụng để chơi LOL, valorant (HIEUPC...), giải nén bằng win rar ra một thư mục tuỳ chọn
-  INF dự kiến: Display.Driver\nvaei.inf
+Công cụ Windows (PowerShell/WinForms) chuyển đổi giữa **hai gói driver NVIDIA CMP 40HX** đã được người dùng tự chuẩn bị. Chỉ hỗ trợ thiết bị có Hardware ID `PCI\VEN_10DE&DEV_1F0B`.
 
-Trong giao diện: chọn 'Thiết lập driver' > dùng nút 'Chọn...'
-cho hai THƯ MỤC ở trên > kiểm tra INF và DriverVer hiện ra > 'Lưu'.
-Ô Model ép: để trống khi cả hai INF chứa DEV_1F0B.
+> **Cảnh báo:** Việc cài lại driver có thể làm gián đoạn GPU, gây màn hình đen hoặc yêu cầu khởi động lại. Không đảm bảo chuyển đổi không cần khởi động lại. Hãy sao lưu dữ liệu, tạo điểm khôi phục Windows và tự chịu trách nhiệm khi sử dụng.
 
-CÁCH KIỂM TRA QUÉT INF - CHỈ ĐỌC, KHÔNG CẦN ADMIN / KHÔNG CÀI DRIVER
-Mở PowerShell trong thư mục công cụ và dùng:
+## Tính năng
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder '...\đường dẫn đến folder (FIX LOL) 40HX_NVIDIA_Setup'
+- Hai hồ sơ: **Làm việc/AI** và **Chơi game/LOL**.
+- Chọn **thư mục driver**, công cụ tự tìm INF thuộc lớp `Display`, có khai báo cài đặt 64-bit cho `DEV_1F0B` và trường `DriverVer`.
+- Nếu thư mục chứa nhiều INF phù hợp, công cụ từ chối chọn ngẫu nhiên.
+- Giao diện WinForms, kiểm tra trạng thái và mô phỏng kiểm thử không thay đổi driver thật.
+- Tạo shortcut Desktop/Start Menu bằng script; không kèm launcher EXE hay hình ảnh, QR hoặc chức năng quyên góp.
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\CMP30HX-DriverToggle.ps1 -ScanFolder '...\đường dẫn đến folder 617.14-desktop-win10-win11-64bit-international-dch-whql'
+## Yêu cầu
 
-KẾT QUẢ ĐÚNG: 'OK: ...nvaei.inf' cho 460 mod,
-'OK: ...nvaci.inf' cho 617.14. Phiên bản DriverVer sẽ
-được đọc từ INF, không suy ra từ tên thư mục.
+- Windows 10/11 64-bit, PowerShell 5.1, quyền quản trị khi chuyển driver thật.
+- Hai gói driver **đã giải nén đầy đủ**, không chứa trong repo này.
+- INF trong mỗi thư mục phải thực sự hỗ trợ `PCI\VEN_10DE&DEV_1F0B` qua mục `.NTamd64`; việc có mã thiết bị **không tự chứng minh** rằng gói driver tương thích hoặc có chữ ký hợp lệ.
 
-LƯU Ý AN TOÀN
-- Quét INF tự động chỉ kiểm tra Class=Display, khai báo thiết bị
-  DEV_1F0B trong section .NTamd64 và DriverVer. Nó KHÔNG thay thế
-  xác minh tính tương thích/chữ ký/chất lượng driver trên GPU thật.
-- Nếu có 0 hoặc trên 1 INF hợp lệ trong thư mục, chương trình DỪNG
-  và yêu cầu chọn một thư mục rõ ràng hơn; không tự chọn bừa.
-- Chuyển driver thật vẫn dùng API của công cụ gốc và vẫn có thể
-  yêu cầu khởi động lại. Chưa kiểm thử trên máy CMP 40HX của bạn.
-- Giữ nguyên các thư mục driver sau khi cấu hình; không đổi nội dung
-  INF hoặc di chuyển bộ cài mà không thiết lập lại.
-- Khi có sự cố, mở cmp30hx-switch.log và gửi thông báo lỗi.
+## Sử dụng
+
+1. Giải nén bộ mã ở một thư mục cố định.
+2. Chạy `Chay-CMP40HX-DriverToggle.cmd` hoặc `Chay-CMP40HX-DriverToggle.vbs`.
+3. Trong **Thiết lập driver**, chọn thư mục gói driver **Làm việc** và **Chơi game**; công cụ tự tìm INF.
+4. Kiểm tra hai hồ sơ và phiên bản nhận diện đúng trước khi thực hiện chuyển.
+5. Đóng ứng dụng dùng GPU, đánh dấu xác nhận và mới bấm nút chuyển.
+6. Nếu Windows yêu cầu, phải khởi động lại.
+
+Ví dụ từ máy kiểm thử của người dùng (không phải tên file bắt buộc):
+
+| Hồ sơ | INF tìm thấy trong gói |
+| --- | --- |
+| Làm việc / AI | `Display.Driver\nvaci.inf` (bộ 617.14 đã mod) |
+| Chơi game | `Display.Driver\nvaei.inf` (bộ 460 đã mod) |
+
+## Mô phỏng và kiểm tra trước khi dùng thật
+
+Chạy `KiemThu-MoPhong.cmd` hoặc trực tiếp:
+
+```powershell
+powershell.exe -NoProfile -File .\CMP40HX-DriverToggle.ps1 -Simulation -SelfTest
+powershell.exe -NoProfile -File .\CMP40HX-DriverToggle.ps1 -ScanFolder 'C:\duong-dan\driver-da-giai-nen'
+```
+
+Lệnh `-ScanFolder` chỉ quét INF. File trong `simulation-fixtures/` là dữ liệu thử **không phải driver thật**.
+
+## Bảo mật, riêng tư và giới hạn
+
+- Mã PowerShell, VBS, CMD được công bố để kiểm tra; không kèm driver NVIDIA, chương trình EXE, tài khoản cá nhân, QR hay ảnh từ bộ gốc.
+- Ứng dụng có thể yêu cầu nâng quyền, chạy PowerShell ẩn qua VBS và dùng Windows SetupAPI để chuyển driver. Những hành vi này có thể bị hệ thống bảo mật cảnh báo; cảnh báo không tự chứng minh có mã độc, việc quét không đảm bảo phần mềm tuyệt đối an toàn.
+- Không đưa lên GitHub các file `cmp40hx-profiles*.json`, `cmp40hx-*.log`, `*.invalid-*`, driver mod và gói cài riêng vì có thể chứa đường dẫn máy, log hoặc file không được phép phân phối.
+- **Chưa kiểm thử trực tiếp bản công khai đã lược bỏ thành phần đồ họa trên Windows/CMP 40HX.** Phải thử mô phỏng và xác nhận giao diện trước khi chuyển driver thật.
+
+## Nguồn và bản quyền
+
+Đây là mã công cụ hỗ trợ quản trị driver, **không liên kết với NVIDIA, Riot Games hay Microsoft**. Không bao gồm gói driver bên thứ ba. Chưa ấn định giấy phép nguồn mở; cần xác minh quyền sử dụng mã gốc trước khi cấp giấy phép phân phối/sửa đổi.
