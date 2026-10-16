@@ -4,6 +4,7 @@ Dựa theo bản gốc chạy trên 30HX của Lâm Đặng - https://www.facebo
 Công cụ Windows (PowerShell/WinForms) chuyển đổi giữa **hai gói driver NVIDIA CMP 40HX** đã được người dùng tự chuẩn bị. Chỉ hỗ trợ thiết bị có Hardware ID `PCI\VEN_10DE&DEV_1F0B`.
 
 > **Cảnh báo:** Việc cài lại driver có thể làm gián đoạn GPU, gây màn hình đen hoặc yêu cầu khởi động lại. Không đảm bảo chuyển đổi không cần khởi động lại. Hãy sao lưu dữ liệu, tạo điểm khôi phục Windows và tự chịu trách nhiệm khi sử dụng.
+> Có khả năng gây treo, drop driver trong quá trình sử dụng - không phải là cách nếu muốn dùng ổn định lâu dài - yêu cầu luôn giữ 2 bộ driver gốc để cài lại đầy đủ khi cần
 
 ## Tính năng
 
